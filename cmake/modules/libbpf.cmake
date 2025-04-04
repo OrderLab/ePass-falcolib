@@ -50,8 +50,11 @@ else()
 		libbpf
 		PREFIX "${PROJECT_BINARY_DIR}/libbpf-prefix"
 		DEPENDS zlib elf
-		URL "https://github.com/libbpf/libbpf/archive/refs/tags/v1.3.0.tar.gz"
-		URL_HASH "SHA256=11db86acd627e468bc48b7258c1130aba41a12c4d364f78e184fd2f5a913d861"
+		# URL "https://github.com/libbpf/libbpf/archive/refs/tags/builtin-epass.tar.gz"
+		GIT_REPOSITORY "git@github.com:OrderLab/ePass-libbpf.git"
+		GIT_TAG "builtin-epass"  # Replace with the correct branch or commit hash
+		GIT_SUBMODULES ""
+		GIT_SUBMODULES_RECURSE ON
 		CONFIGURE_COMMAND mkdir -p build root
 		BUILD_COMMAND
 			make BUILD_STATIC_ONLY=y OBJDIR=${LIBBPF_BUILD_DIR}/build
