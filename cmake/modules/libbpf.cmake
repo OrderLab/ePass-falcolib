@@ -52,7 +52,7 @@ else()
 		DEPENDS zlib elf
 		# URL "https://github.com/libbpf/libbpf/archive/refs/tags/builtin-epass.tar.gz"
 		GIT_REPOSITORY "git@github.com:OrderLab/ePass-libbpf.git"
-		GIT_TAG "builtin-epass"  # Replace with the correct branch or commit hash
+		GIT_TAG "kernel"  # Replace with the correct branch or commit hash
 		GIT_SUBMODULES ""
 		GIT_SUBMODULES_RECURSE ON
 		CONFIGURE_COMMAND mkdir -p build root
