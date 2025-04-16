@@ -76,7 +76,7 @@ else()
 				./configure CXXFLAGS=${PROTOBUF_CXXFLAGS} --with-zlib-include=${ZLIB_INCLUDE}
 				--with-zlib-lib=${ZLIB_SRC} --with-zlib ${PROTOBUF_CONFIGURE_FLAGS}
 				${PROTOBUF_PIC_OPTION} --prefix=${PROTOBUF_INSTALL_DIR}
-			BUILD_COMMAND make
+			BUILD_COMMAND make -j$(nproc)
 			BUILD_IN_SOURCE 1
 			BUILD_BYPRODUCTS ${PROTOC} ${PROTOBUF_INCLUDE} ${PROTOBUF_LIB}
 			INSTALL_COMMAND make install
