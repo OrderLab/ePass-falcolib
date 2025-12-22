@@ -40,7 +40,7 @@ jobs:
     steps:
       # We need to use v0.3.2 instead of the hash because the tagname is 
       # used by the action to download release tagged images.
-      - uses: falcosecurity/kernel-testing@v0.3.2
+      - uses: falcosecurity/kernel-testing@v0.4.0
         id: kernel_tests
         with:
           libsversion: ${{ inputs.libsversion }}
