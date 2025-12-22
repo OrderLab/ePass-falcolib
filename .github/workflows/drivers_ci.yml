@@ -170,7 +170,7 @@ jobs:
 
       - name: Build and test drivers on ppc64le node via ssh
         if: needs.paths-filter.outputs.driver == 'true' || needs.paths-filter.outputs.libscap == 'true' || needs.paths-filter.outputs.libpman == 'true'
-        uses: appleboy/ssh-action@2ead5e36573f08b82fbfce1504f1a4b05a647c6f # v1.2.2
+        uses: appleboy/ssh-action@823bd89e131d8d508129f9443cad5855e9ba96f0 # v1.2.4
         with:
           host: ${{ secrets.PPC64LE_HOST }}
           username: ${{ secrets.PPC64LE_USERNAME }}
@@ -204,7 +204,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: uraimo/run-on-arch-action@4141da824ffb5eda88d221d9cf835f6a61ed98d9 # v3.0.0
+      - uses: uraimo/run-on-arch-action@d94c13912ea685de38fccc1109385b83fd79427d # v3.0.1
         name: Run s390x build 🏗️
         if: needs.paths-filter.outputs.driver == 'true' || needs.paths-filter.outputs.libscap == 'true' || needs.paths-filter.outputs.libpman == 'true'
         with:
