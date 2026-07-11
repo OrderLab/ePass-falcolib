@@ -39,6 +39,7 @@ else()
 	set(LIBBPF_BUILD_DIR "${LIBBPF_SRC}/libbpf-build")
 	set(LIBBPF_INCLUDE "${LIBBPF_BUILD_DIR}/root/usr/include")
 	set(LIBBPF_LIB "${LIBBPF_BUILD_DIR}/root/usr/lib64/libbpf.a")
+	set(EPASS_RS_DIR "${PROJECT_SOURCE_DIR}/../../core-rs")
 
 	get_target_property(LIBELF_INCLUDE_DIR elf INCLUDE_DIRECTORIES)
 
@@ -58,6 +59,7 @@ else()
 		BUILD_COMMAND
 			make BUILD_STATIC_ONLY=y OBJDIR=${LIBBPF_BUILD_DIR}/build
 			DESTDIR=${LIBBPF_BUILD_DIR}/root NO_PKG_CONFIG=1
+			EPASS_RS_DIR=${EPASS_RS_DIR}
 			"EXTRA_CFLAGS=-fPIC ${LIBELF_COMPILER_STRING} -I${ZLIB_INCLUDE}" "LDFLAGS=-Wl,-Bstatic"
 			"EXTRA_LDFLAGS=-L${LIBELF_SRC}/libelf/libelf -L${ZLIB_SRC}" -C ${LIBBPF_SRC}/libbpf/src
 			install install_uapi_headers
@@ -71,7 +73,7 @@ else()
 	file(MAKE_DIRECTORY ${LIBBPF_INCLUDE}) # necessary to make target_include_directories() work
 	target_include_directories(lbpf INTERFACE $<BUILD_INTERFACE:${LIBBPF_INCLUDE}>)
 	add_dependencies(lbpf libbpf)
-	target_link_libraries(lbpf INTERFACE elf ${ZLIB_LIB})
+	target_link_libraries(lbpf INTERFACE elf ${ZLIB_LIB} pthread dl m)
 
 	message(STATUS "Using bundled libbpf: include'${LIBBPF_INCLUDE}', lib: ${LIBBPF_LIB}")
 	install(
